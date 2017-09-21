@@ -1,0 +1,8 @@
+# WARNING: This file is managed by Salt Stack
+
+{% for name, value in graylog_map.sysconfig.items() -%}
+{{ name }}="{{ value }}"
+{% endfor %}
+
+# EOF
+

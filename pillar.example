@@ -1,0 +1,31 @@
+graylog:
+  lookup:
+    repo_version: 2.3
+    package_name: graylog-server
+    service_name: graylog-server
+    package_version: ''
+    package_dependencies:
+      - java-1.8.0-openjdk
+  restart_service_after_state_change: True
+  sysconfig:
+    JAVA: /usr/bin/java
+    GRAYLOG_SERVER_JAVA_OPTS: '-Xms1g -Xmx1g -XX:NewRatio=1 -server -XX:+ResizeTLAB -XX:+UseConcMarkSweepGC -XX:+CMSConcurrentMTEnabled -XX:+CMSClassUnloadingEnabled -XX:+UseParNewGC -XX:-OmitStackTraceInFastThrow'
+    GRAYLOG_SERVER_ARGS: ''
+    GRAYLOG_COMMAND_WRAPPER: ''
+  config:
+    is_master: true
+    password_secret: mtZ0528SNWwlu2hQt6TSKu87sIvRqbgfvCZjFgbL7HQXZrcwc16ufrKZ9m1acY95d9UGURS75k8WjZMhQvo75vo6klogHkk0
+    root_username: admin
+    root_password_sha2: e3c652f0ba0b4801205814f8b6bc49672c4c74e25b497770bb89b22cdeb4e951
+    root_email: "root"
+    root_timezone: Australia/Brisbane
+    rest_listen_uri: http://0.0.0.0:9000/api/
+    rest_transport_uri: http://127.0.0.1:9000/api/
+    trusted_proxies: 127.0.0.1/32, 0:0:0:0:0:0:0:1/128
+    web_enable: true
+    web_listen_uri: http://0.0.0.0:9000/
+    elasticsearch_hosts: http://127.0.0.1:9200
+    mongodb_uri: mongodb://localhost/graylog
+  plugin_dir: /usr/share/graylog-server/plugin
+  plugins:
+    - graylog-plugin-example.jar

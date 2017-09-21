@@ -1,0 +1,13 @@
+{% import_yaml 'graylog/defaults.yaml' as default_settings %}
+
+{% set os_map = salt['grains.filter_by']({
+  'default': {
+    'service_name': 'graylog-server',
+    'package_name': 'graylog-server',
+    'package_dependencies': [ 'java-1.8.0-openjdk' ],
+  },
+}, merge=salt['pillar.get']('graylog:lookup')) %}
+
+{% do default_settings.graylog.update(os_map) %}
+
+{% set graylog_map = salt['pillar.get']('graylog', default=default_settings.graylog, merge=True) %}

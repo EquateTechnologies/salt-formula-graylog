@@ -1,0 +1,60 @@
+graylog:
+  repo_version: 2.3
+  package_name: graylog-server
+  service_name: graylog-server
+  package_version: ''
+  package_dependencies:
+    - java-1.8.0-openjdk
+  restart_service_after_state_change: True
+  sysconfig:
+    JAVA: /usr/bin/java
+    GRAYLOG_SERVER_JAVA_OPTS: '-Xms1g -Xmx1g -XX:NewRatio=1 -server -XX:+ResizeTLAB -XX:+UseConcMarkSweepGC -XX:+CMSConcurrentMTEnabled -XX:+CMSClassUnloadingEnabled -XX:+UseParNewGC -XX:-OmitStackTraceInFastThrow'
+    GRAYLOG_SERVER_ARGS: ''
+    GRAYLOG_COMMAND_WRAPPER: ''
+  config:
+    is_master: true
+    node_id_file: /etc/graylog/server/node-id
+    password_secret: mtZ0528SNWwlu2hQt6TSKu87sIvRqbgfvCZjFgbL7HQXZrcwc16ufrKZ9m1acY95d9UGURS75k8WjZMhQvo75vo6klogHkk0
+    root_username: admin
+    root_password_sha2: e3c652f0ba0b4801205814f8b6bc49672c4c74e25b497770bb89b22cdeb4e951
+    root_email: "root"
+    root_timezone: UTC
+    plugin_dir: /usr/share/graylog-server/plugin
+    rest_listen_uri: http://0.0.0.0:9000/api/
+    rest_transport_uri: http://127.0.0.1:9000/api/
+    trusted_proxies: 127.0.0.1/32, 0:0:0:0:0:0:0:1/128
+    web_enable: true
+    web_listen_uri: http://0.0.0.0:9000/
+    elasticsearch_hosts: http://127.0.0.1:9200
+    rotation_strategy: count
+    elasticsearch_max_docs_per_index: 20000000
+    elasticsearch_max_number_of_indices: 20
+    retention_strategy: delete
+    elasticsearch_shards: 4
+    elasticsearch_replicas: 0
+    elasticsearch_index_prefix: graylog
+    allow_leading_wildcard_searches: false
+    allow_highlighting: false
+    elasticsearch_analyzer: standard
+    output_batch_size: 500
+    output_flush_interval: 1
+    output_fault_count_threshold: 5
+    output_fault_penalty_seconds: 30
+    processbuffer_processors: 5
+    outputbuffer_processors: 3
+    processor_wait_strategy: blocking
+    ring_size: 65536
+    inputbuffer_ring_size: 65536
+    inputbuffer_processors: 2
+    inputbuffer_wait_strategy: blocking
+    message_journal_enabled: true
+    message_journal_dir: /var/lib/graylog-server/journal
+    lb_recognition_period_seconds: 3
+    mongodb_uri: mongodb://localhost/graylog
+    mongodb_max_connections: 1000
+    mongodb_threads_allowed_to_block_multiplier: 5
+    content_packs_dir: /usr/share/graylog-server/contentpacks
+    content_packs_auto_load: grok-patterns.json
+    proxied_requests_thread_pool_size: 32
+  plugin_dir: /usr/share/graylog-server/plugin
+  plugins: []
